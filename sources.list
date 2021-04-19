@@ -1,0 +1,3 @@
+deb [by-hash=force] https://community-packages.deepin.com/deepin/ apricot main contrib non-free 
+deb-src https://community-packages.deepin.com/deepin/ apricot main contrib non-free 
+deb https://community-store-packages.deepin.com/appstore eagle appstore
