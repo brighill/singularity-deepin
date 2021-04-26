@@ -5,10 +5,10 @@ OSVersion: apricot
 %post
   dpkg --add-architecture i386
   apt update
-  apt install -y --no-install-recommends locales
+  apt install -y --no-install-recommends locales procps x11-utils winbind fonts-wqy-microhei kmod
   echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen 
   locale-gen 
-  apt install -y --no-install-recommends procps fonts-wqy-microhei deepin.com.wechat x11-utils winbind wget
+  apt install -y --no-install-recommends deepin.com.wechat
 
   rm -rvf /usr/share/icons/Adwaita 
   find /var/lib/apt/lists -type f -delete 

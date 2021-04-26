@@ -5,11 +5,11 @@ OSVersion: apricot
 %post
   dpkg --add-architecture i386
   apt update
-  apt install -y --no-install-recommends locales
+  apt install -y --no-install-recommends locales procps x11-utils winbind fonts-wqy-microhei wget kmod
   echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen 
   locale-gen 
-  apt install -y --no-install-recommends procps fonts-wqy-microhei deepin.com.wechat x11-utils winbind wget
 
+  apt install -y --no-install-recommends deepin.com.wechat
   wget https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe -O /tmp/WeChatSetup.exe
   7z x -aoa /opt/apps/com.qq.weixin.deepin/files/files.7z -o/tmp/wechatdir
   rm -rf /tmp/wechatdir/drive_c/Program\ Files/Tencent/WeChat/*
@@ -18,7 +18,6 @@ OSVersion: apricot
   7z a -t7z -r /opt/apps/com.qq.weixin.deepin/files/files.7z /tmp/wechatdir/*
   md5sum /opt/apps/com.qq.weixin.deepin/files/files.7z | awk '{ print $1 }' > /opt/apps/com.qq.weixin.deepin/files/files.md5sum
   rm -rf /tmp/wechatdir /tmp/WeChatSetup.exe
-
   apt remove -y wget
   apt -y autoremove --purge
 
