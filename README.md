@@ -1,7 +1,6 @@
 # Singularity-wechat
 ## 1.安装 debootstrap 和 singularity (Gentoo)
 ```sh
-sudo echo "sys-cluster/singularity ~amd64" >> /etc/portage/package.accept_keywords
 sudo emerge dev-util/debootstrap sys-cluster/singularity
 sudo cp apricot /usr/share/debootstrap/scripts
 ```
@@ -21,5 +20,5 @@ singularity exec /opt/wechat.sif /opt/apps/com.qq.weixin.deepin/files/run.sh
 ```
 ## 4.打开后台窗口
 ```sh
-singularity exec /opt/wechat.sif $HOME/.deepinwine/deepin-wine-helper/sendkeys.sh w wechat 4
+singularity exec /opt/wechat /opt/deepinwine/tools/sendkeys.sh w wechat 4
 ```
