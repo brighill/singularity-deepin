@@ -5,7 +5,7 @@ OSVersion: apricot
 %post
   dpkg --add-architecture i386
   apt update
-  apt install -y --no-install-recommends locales procps x11-utils libgl1:i386 wget
+  apt install -y --no-install-recommends locales procps x11-utils wget socat
   echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen 
   locale-gen 
 
@@ -43,4 +43,4 @@ OSVersion: apricot
   keyrings/deepin-archive-keyring.gpg /etc/apt/trusted.gpg.d/
   keyrings/appstore.gpg   /etc/apt/trusted.gpg.d/
   sources.list /etc/apt/
-
+  xdg-open /usr/bin/
