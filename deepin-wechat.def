@@ -1,14 +1,22 @@
 BootStrap: debootstrap
-MirrorURL: https://community-packages.deepin.com/deepin/
-OSVersion: apricot 
+MirrorURL: http://mirrors.aliyun.com/debian
+OSVersion: buster
 
 %post
+  apt install ca-certificates -y
+  cat <<EOF > /etc/apt/sources.list
+deb [by-hash=force] https://community-packages.deepin.com/deepin/ apricot main contrib non-free
+deb https://com-store-packages.uniontech.com/appstore deepin appstore
+EOF
   dpkg --add-architecture i386
   apt update
   apt install -y --no-install-recommends locales procps x11-utils socat
   echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen 
   locale-gen 
+  apt install -y libssl1.1:i386
   apt install -y --no-install-recommends com.qq.weixin.deepin
+  apt upgrade -y
+  apt autoremove
 
   rm -rvf /usr/share/icons/Adwaita 
   find /var/lib/apt/lists -type f -delete 
@@ -19,6 +27,7 @@ OSVersion: apricot
   find /usr/share/locale -type f -delete
 
 %environment
+  export DEBIAN_FRONTEND=noninteractive
   export GTK_IM_MODULE="fcitx"
   export XMODIFIERS="@im=fcitx" 
   export QT_IM_MODULE="fcitx"
@@ -31,5 +40,4 @@ OSVersion: apricot
 %files
   keyrings/deepin-archive-keyring.gpg /etc/apt/trusted.gpg.d/
   keyrings/appstore.gpg   /etc/apt/trusted.gpg.d/
-  sources.list /etc/apt/
   xdg-open /usr/bin/
