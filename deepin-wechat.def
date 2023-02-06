@@ -10,13 +10,10 @@ deb https://com-store-packages.uniontech.com/appstore deepin appstore
 EOF
   dpkg --add-architecture i386
   apt update
-  apt install -y --no-install-recommends locales procps x11-utils socat
+  apt install -y --no-install-recommends locales procps x11-utils socat file python2
   echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen 
   locale-gen 
-  apt install -y libssl1.1:i386
   apt install -y --no-install-recommends com.qq.weixin.deepin
-  apt upgrade -y
-  apt autoremove
 
   rm -rvf /usr/share/icons/Adwaita 
   find /var/lib/apt/lists -type f -delete 
