@@ -1,21 +1,18 @@
 BootStrap: debootstrap
 MirrorURL: http://mirrors.aliyun.com/debian
-OSVersion: buster
+OSVersion: bookworm
 
 %post
   apt install ca-certificates -y
-  cat <<EOF > /etc/apt/sources.list
-deb [by-hash=force] https://community-packages.deepin.com/deepin/ apricot main contrib non-free
+  cat <<EOF >> /etc/apt/sources.list
 deb https://com-store-packages.uniontech.com/appstore deepin appstore
 EOF
-  dpkg --add-architecture i386
   apt update
-  apt install -y --no-install-recommends locales procps x11-utils socat file python2
+  apt install -y --no-install-recommends locales procps x11-utils socat file
   echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen 
   locale-gen 
   apt install -y --no-install-recommends com.qq.weixin.deepin
 
-  rm -rvf /usr/share/icons/Adwaita 
   find /var/lib/apt/lists -type f -delete 
   find /var/cache -type f -delete 
   find /var/log -type f -delete 
@@ -25,16 +22,7 @@ EOF
 
 %environment
   export DEBIAN_FRONTEND=noninteractive
-  export GTK_IM_MODULE="fcitx"
-  export XMODIFIERS="@im=fcitx" 
-  export QT_IM_MODULE="fcitx"
-  export LANG=zh_CN.UTF-8
-  export LANGUAGE=zh_CN.UTF-8 
-  export LC_ALL=zh_CN.UTF-8 
-  export LANG=zh_CN.UTF-8 
-  export TZ=UTC-8
 
 %files
-  keyrings/deepin-archive-keyring.gpg /etc/apt/trusted.gpg.d/
   keyrings/appstore.gpg   /etc/apt/trusted.gpg.d/
   xdg-open /usr/bin/
