@@ -16,6 +16,7 @@
    ```bash
    echo "app-containers/apptainer suid" | sudo tee  /etc/portage/package.use/apptainer
    sudo emerge app-containers/apptainer
+   sudo sed -i 's/# allow setuid-mount squashfs = iflimited/allow setuid-mount squashfs = yes/' /etc/apptainer/apptainer.conf
    ```
 
    centos:
@@ -23,6 +24,7 @@
    ```bash
    sudo yum install epel-release -y
    sudo yum install apptainer-suid -y
+   sudo sed -i 's/# allow setuid-mount squashfs = iflimited/allow setuid-mount squashfs = yes/' /etc/apptainer/apptainer.conf
    ```
 
    ubuntu:
@@ -31,6 +33,7 @@
    sudo add-apt-repository -y ppa:apptainer/ppa
    sudo apt update
    sudo apt install apptainer-suid -y
+   sudo sed -i 's/# allow setuid-mount squashfs = iflimited/allow setuid-mount squashfs = yes/' /etc/apptainer/apptainer.conf
    ```
 
   1. 运行微信
